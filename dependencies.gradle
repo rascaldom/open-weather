@@ -21,10 +21,5 @@ ext {
     rxandroid_version = '2.1.1'
     rxbinding_version = '2.2.0'
     architecture_version = '2.0.0'
-    dagger_version = '2.23.2'
-    multidex_version = '1.0.3'
-    firebase_core_version = '16.0.9'
-    firebase_messaging_version = '17.6.0'
-    crashlytics_version = '2.10.1'
-    asynchttpclient_version = '1.4.9'
+    koin_version = '1.0.2'
 }

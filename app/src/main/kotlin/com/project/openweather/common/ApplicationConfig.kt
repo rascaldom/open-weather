@@ -1,5 +1,15 @@
 package com.project.openweather.common
 
+import com.project.openweather.di.mainModules
+import com.project.openweather.di.networkModules
+
+val appModules = listOf(networkModules, mainModules)
+
+const val baseApiUrl = "https://api.openweathermap.org/"
+const val baseImageUrl = "https://openweathermap.org/"
+
+const val apiKey = "33d719ef2fdd8e8f82040c07a232f869"
+
 // location
 const val DEFAULT_UPDATE_INTERVAL = 5000
 const val DEFAULT_FASTEST_INTERVAL = 2000
