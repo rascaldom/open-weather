@@ -1,4 +1,4 @@
-package com.project.openweather.common.ui
+package com.project.openweather.common.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

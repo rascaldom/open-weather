@@ -1,10 +1,11 @@
-package com.project.openweather.common.ui
+package com.project.openweather.common.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import com.project.openweather.common.ui.LoadingDialog
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 

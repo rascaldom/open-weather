@@ -5,11 +5,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
 import com.project.openweather.R
 import com.project.openweather.common.location.LocationServiceHelper
 import com.project.openweather.common.permission.PermissionsCheckHelper
-import com.project.openweather.common.ui.BaseActivity
+import com.project.openweather.common.base.BaseActivity
 import com.project.openweather.databinding.ActivityMainBinding
 import com.project.openweather.ui.main.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
