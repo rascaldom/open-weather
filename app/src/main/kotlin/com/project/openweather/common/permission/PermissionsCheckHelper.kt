@@ -16,15 +16,12 @@ class PermissionsCheckHelper(
 
         val permissionsList = listOf(
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.ACCESS_FINE_LOCATION
         )
     }
 
     fun checkPermissions(): Boolean {
         return if (isPermissionsGranted() != PackageManager.PERMISSION_GRANTED) {
-//            showAlert()
             requestPermissions()
             false
         } else {

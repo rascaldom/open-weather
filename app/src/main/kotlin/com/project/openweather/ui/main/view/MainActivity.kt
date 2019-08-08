@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.project.openweather.R
+import com.project.openweather.common.location.LocationServiceHelper
+import com.project.openweather.common.permission.PermissionsCheckHelper
 import com.project.openweather.common.ui.BaseActivity
 import com.project.openweather.databinding.ActivityMainBinding
 import com.project.openweather.ui.main.viewmodel.MainViewModel
@@ -14,6 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    private val permissionsCheckHelper = PermissionsCheckHelper(this)
 
     private lateinit var viewModel: MainViewModel
 
@@ -29,6 +33,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (permissionsCheckHelper.checkPermissions()) {
+            initialize()
+        }
+
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -37,19 +45,52 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        LocationServiceHelper.startLocationUpdates()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_refresh -> {
+                viewModel.getCurrentPositionWeather()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun initialize() {
+        LocationServiceHelper.initialize(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        LocationServiceHelper.stopLocationUpdates()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode) {
+            PermissionsCheckHelper.PERMISSIONS_REQUEST_CODE -> {
+                val isPermissionsGranted = permissionsCheckHelper.processPermissionsResult(requestCode, permissions, grantResults)
+
+                if (isPermissionsGranted) {
+                    println("Permissions granted.")
+                    initialize()
+                } else {
+                    println("Permissions denied.")
+                    finish()
+                }
+
+                return
+            }
         }
     }
 }
