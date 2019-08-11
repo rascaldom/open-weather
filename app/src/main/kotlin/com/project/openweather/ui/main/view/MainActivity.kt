@@ -1,14 +1,19 @@
 package com.project.openweather.ui.main.view
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.project.openweather.BR
 import com.project.openweather.R
 import com.project.openweather.common.base.BaseActivity
 import com.project.openweather.common.location.LocationServiceHelper
 import com.project.openweather.common.permission.PermissionsCheckHelper
+import com.project.openweather.common.ui.BaseListAdapter
 import com.project.openweather.databinding.ActivityMainBinding
+import com.project.openweather.databinding.AdapterCitiesItemBinding
+import com.project.openweather.network.dto.ListElement
 import com.project.openweather.ui.main.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
@@ -58,10 +63,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SwipeRefreshLayout.OnR
 
     private fun initAnotherCitiesList() {
         binding.layoutSwipeRefresh.setOnRefreshListener(this)
+        viewModel.isRequestCompleted.observe(this, Observer {
+            binding.layoutSwipeRefresh.isRefreshing = false
+        })
+        binding.rvAnotherCities.adapter = object : BaseListAdapter.Adapter<ListElement, AdapterCitiesItemBinding>(
+            layoutId = R.layout.adapter_cities_item,
+            variableId = BR.weathersDto
+        ) {}
     }
 
     override fun onRefresh() {
-        viewModel.getCurrentPositionWeather()
+        viewModel.getCurrentPositionWeather(false, false)
     }
 
     override fun onPause() {

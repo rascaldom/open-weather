@@ -32,7 +32,9 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     private fun showLoading() {
         if (isFinishing) return
-        loadingDialog.show()
+        if (!loadingDialog.isShowing) {
+            loadingDialog.show()
+        }
     }
 
     private fun dismissLoading() {

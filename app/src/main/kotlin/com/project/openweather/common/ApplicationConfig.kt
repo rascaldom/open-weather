@@ -10,6 +10,8 @@ const val baseImageUrl = "https://openweathermap.org/img/w/"
 
 const val apiKey = "33d719ef2fdd8e8f82040c07a232f869"
 
+const val bboxKR = "${126.117397903},${34.3900458847},${129.468304478},${38.6122429469},${10}"
+
 // location
 const val DEFAULT_UPDATE_INTERVAL = 5000
 const val DEFAULT_FASTEST_INTERVAL = 2000

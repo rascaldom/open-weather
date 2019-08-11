@@ -29,44 +29,27 @@
                 <include layout="@layout/content_main"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"
-                         android:layout_marginBottom="48dp"
+                         android:layout_marginBottom="80dp"
                          bind:mainViewModel="@{mainViewModel}"/>
 
                 <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="80dp"
                         app:layout_collapseMode="pin"/>
 
-                <LinearLayout
-                        android:background="#ffff00"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:orientation="horizontal"
-                        android:layout_gravity="bottom">
-
-                    <Button
-                            android:id="@+id/button1"
-                            android:text="btn1"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
-
-                    <Button
-                            android:id="@+id/button2"
-                            android:text="btn2"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
-
-                    <Button
-                            android:id="@+id/button3"
-                            android:text="btn3"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
-
-                </LinearLayout>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:gravity="center"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:text="@string/current_weather_in_another_cities"
+                        android:textSize="24dp"
+                        android:textColor="#ff4500"
+                        android:textStyle="bold"
+                        android:letterSpacing="-0.05"/>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -81,7 +64,8 @@
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_another_cities"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    bindList="@{mainViewModel.citiesWeatherList}"/>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
