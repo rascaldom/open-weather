@@ -9,5 +9,8 @@ import retrofit2.http.Query
 interface WeatherApi {
 
     @GET("/data/2.5/weather")
-    fun getCurrentPositionData(@Query("lat") lat: String, @Query("lon") lon: String, @Query("appid") key: String = apiKey): Single<WeatherDto>
+    fun getCurrentWeatherByCoordinates(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String,
+        @Query("appid") key: String = apiKey): Single<WeatherDto>
 }

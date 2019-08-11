@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Open Weather</string>
     <string name="action_refresh">Refresh</string>
+
+    <string name="current_weather_in_your_city">Current weather in your city</string>
+    <string name="current_weather_in_somewhere">Current weather in %1$s</string>
+    <string name="current_temperature">%1$s ℃</string>
 </resources>

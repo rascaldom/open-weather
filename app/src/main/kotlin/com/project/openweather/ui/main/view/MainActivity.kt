@@ -1,20 +1,20 @@
 package com.project.openweather.ui.main.view
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.os.Handler
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.project.openweather.R
+import com.project.openweather.common.base.BaseActivity
 import com.project.openweather.common.location.LocationServiceHelper
 import com.project.openweather.common.permission.PermissionsCheckHelper
-import com.project.openweather.common.base.BaseActivity
 import com.project.openweather.databinding.ActivityMainBinding
 import com.project.openweather.ui.main.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(), SwipeRefreshLayout.OnRefreshListener {
 
     private val permissionsCheckHelper = PermissionsCheckHelper(this)
 
@@ -32,15 +32,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.mainViewModel = viewModel
+        binding.lifecycleOwner = this
+
         if (permissionsCheckHelper.checkPermissions()) {
             initialize()
-        }
-
-        setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
-            viewModel.getCurrentPositionWeather()
         }
     }
 
@@ -50,23 +46,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         LocationServiceHelper.startLocationUpdates()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_refresh -> {
-                viewModel.getCurrentPositionWeather()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     private fun initialize() {
         LocationServiceHelper.initialize(this)
+        initToolbar()
+        initAnotherCitiesList()
+    }
+
+    private fun initToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = null
+    }
+
+    private fun initAnotherCitiesList() {
+        binding.layoutSwipeRefresh.setOnRefreshListener(this)
+    }
+
+    override fun onRefresh() {
+        viewModel.getCurrentPositionWeather()
     }
 
     override fun onPause() {
