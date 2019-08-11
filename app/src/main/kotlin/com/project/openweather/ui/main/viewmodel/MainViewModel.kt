@@ -25,12 +25,10 @@ class MainViewModel(private val mainModel: MainModel) : BaseViewModel() {
             .doOnSubscribe { mutableLoadingSubject.postValue(true) }
             .doAfterTerminate { mutableLoadingSubject.postValue(false) }
             .subscribe ({
-                println("[rascaldom] success")
                 _currentCityTemperature.value = it.main.temp
                 _currentCityWeatherIcon.value = it.weather[0].icon
                 _currentCityName.value = it.name
             }, {
-                println("[rascaldom] fail")
                 it.printStackTrace()
             }))
     }

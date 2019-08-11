@@ -1,7 +1,6 @@
 package com.project.openweather.ui.main.view
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -77,10 +76,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), SwipeRefreshLayout.OnR
                 val isPermissionsGranted = permissionsCheckHelper.processPermissionsResult(requestCode, permissions, grantResults)
 
                 if (isPermissionsGranted) {
-                    println("Permissions granted.")
                     initialize()
                 } else {
-                    println("Permissions denied.")
                     finish()
                 }
 

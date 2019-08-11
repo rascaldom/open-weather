@@ -18,7 +18,7 @@ fun setText(view: TextView, temperature: Double) {
 
 @BindingAdapter("bindImage")
 fun loadImage(view: ImageView, iconName: LiveData<String>?) {
-    if (iconName != null && iconName.value != null) {
-        GlideApp.with(view.context).load("$baseImageUrl${iconName.value}.png").into(view)
+    iconName?.value?.run {
+        GlideApp.with(view.context).load("$baseImageUrl${this}.png").into(view)
     }
 }
