@@ -26,6 +26,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+                android:name=".ui.main.view.DetailActivity"
+                android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+                android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

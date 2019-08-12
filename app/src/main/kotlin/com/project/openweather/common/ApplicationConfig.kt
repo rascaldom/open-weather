@@ -20,3 +20,6 @@ const val DEFAULT_LATITUDE = 37.56646932590661
 
 // temperature
 const val KELVIN = -273.15
+
+// format
+const val TIME_FORMAT_HHMMSS = "HH:mm:ss"

@@ -11,8 +11,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_current_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="@{() -> mainViewModel.clickCityInfo()}"
+            android:foreground="?attr/selectableItemBackground"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:showIn="@layout/activity_main"
             tools:context=".ui.main.view.MainActivity">
@@ -24,7 +27,7 @@
                 android:layout_marginTop="40dp"
                 android:text="@string/current_weather_in_your_city"
                 android:textSize="28dp"
-                android:textColor="#ff4500"
+                android:textColor="@color/text_title"
                 android:textStyle="bold"
                 android:letterSpacing="-0.05"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +35,6 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         <LinearLayout
-                android:id="@+id/layout_current_weather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -41,7 +43,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_primary_title">
 
             <TextView
-                    android:id="@+id/tv_current_temperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="30dp"
@@ -49,14 +50,12 @@
                     bind:bindTemperature="@{mainViewModel.currentCityTemperature}"/>
 
             <ImageView
-                    android:id="@+id/iv_weather_icon"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="10dp"
                     bind:bindImage="@{mainViewModel.currentCityWeatherIcon}"/>
 
             <TextView
-                    android:id="@+id/tv_current_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{mainViewModel.currentCityName}"

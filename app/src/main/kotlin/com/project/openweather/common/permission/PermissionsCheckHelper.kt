@@ -7,9 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 
 class PermissionsCheckHelper(
-        val activity: AppCompatActivity,
-        val list: List<String> = permissionsList,
-        val code:Int = PERMISSIONS_REQUEST_CODE) {
+    private val activity: AppCompatActivity,
+    private val list: List<String> = permissionsList,
+    private val code:Int = PERMISSIONS_REQUEST_CODE) {
 
     companion object {
         const val PERMISSIONS_REQUEST_CODE = 1000
@@ -25,7 +25,6 @@ class PermissionsCheckHelper(
             requestPermissions()
             false
         } else {
-            println("Permissions already granted.")
             true
         }
     }
@@ -52,10 +51,8 @@ class PermissionsCheckHelper(
     private fun requestPermissions() {
         val permission = deniedPermission()
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
-            // 사용자가 다시 보지 않기에 체크를 하지 않고, 권한 설정을 거절한 이력이 있는 경우
             println("shouldShowRequestPermissionRationale() true")
         } else {
-            // 사용자가 다시 보지 않기에 체크하고, 권한 설정을 거절한 이력이 있는 경우
             println("shouldShowRequestPermissionRationale() false")
         }
         ActivityCompat.requestPermissions(activity, list.toTypedArray(), code)

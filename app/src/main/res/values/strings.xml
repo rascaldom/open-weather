@@ -5,5 +5,18 @@
     <string name="current_weather_in_your_city">Current weather in your city</string>
     <string name="current_weather_in_another_cities">Current weather in another cities</string>
     <string name="current_weather_in_somewhere">Current weather in %1$s</string>
-    <string name="current_temperature">%1$s ℃</string>
+
+    <string name="wind">Wind</string>
+    <string name="pressure">Pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="geo_coords">Geo Coords</string>
+
+    <string name="unit_temperature">%1$s ℃</string>
+    <string name="unit_wind">%1$s ㎧</string>
+    <string name="unit_pressure">%1$s hpa</string>
+    <string name="unit_humidity">%1$s ％</string>
+
+    <string name="symbol_comma">，</string>
 </resources>

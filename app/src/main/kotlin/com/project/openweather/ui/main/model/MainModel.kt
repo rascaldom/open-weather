@@ -9,5 +9,7 @@ interface MainModel {
 
     fun requestWeatherData(location: Location): Single<WeatherDto>
 
+    fun requestWeatherData(cityId: Long): Single<WeatherDto>
+
     fun requestCitiesWeatherData(): Single<WeathersDto>
 }
