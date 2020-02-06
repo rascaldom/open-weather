@@ -1,3 +1,1 @@
-"# open-weather" 
-"# open-weather" 
-"# open-weather" 
+Kotlin + MVVM + DataBinding + Rx + Retrofit + LiveData + Koin
